@@ -1,0 +1,32 @@
+{
+  "name": "ig-transcribe",
+  "version": "1.0.0",
+  "description": "Download Instagram videos and transcribe them using Whisper",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "check": "node index.js --check",
+    "batch": "node examples/batch-process.js",
+    "scrape-account": "node scripts/scrape-account.js",
+    "setup": "cp .env.example .env && mkdir -p downloads/videos downloads/audio output logs scripts && echo 'Setup complete! Edit .env file with your settings.'"
+  },
+  "keywords": [
+    "instagram",
+    "transcription",
+    "whisper",
+    "ollama",
+    "yt-dlp"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.7",
+    "dotenv": "^16.4.1",
+    "csv-writer": "^1.6.0",
+    "winston": "^3.11.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.56.0"
+  }
+}

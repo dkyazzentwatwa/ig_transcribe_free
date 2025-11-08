@@ -1,0 +1,10 @@
+# Instagram URLs for batch processing
+# Lines starting with # are ignored
+# Add one URL per line
+
+# Example URLs (replace with your own):
+# https://www.instagram.com/p/ABC123xyz/
+# https://www.instagram.com/reel/XYZ789abc/
+
+# Add your URLs below:
+

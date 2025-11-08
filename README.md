@@ -197,13 +197,6 @@ This tool is for personal and educational use only. Always respect Instagram's T
 - [OpenAI Whisper](https://github.com/openai/whisper) - Speech recognition
 - [Ollama](https://ollama.ai/) - Local AI models
 - [FFmpeg](https://ffmpeg.org/) - Audio/video processing
-
-## 📞 Support
-
-- 📖 [Documentation](docs/)
-- 🐛 [Issues](https://github.com/yourusername/ig-transcribe/issues)
-- 💬 [Discussions](https://github.com/yourusername/ig-transcribe/discussions)
-
 ---
 
 Made with ❤️ for content creators and researchers

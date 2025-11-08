@@ -1,9 +1,22 @@
 import { createObjectCsvWriter } from 'csv-writer';
-import { existsSync, mkdirSync } from 'fs';
-import { dirname } from 'path';
+import { existsSync, mkdirSync, writeFileSync } from 'fs';
+import { dirname, join, basename, extname } from 'path';
 import { config } from '../config.js';
 import { logger } from '../utils/logger.js';
 import { formatTimestamp } from '../utils/helpers.js';
+
+/**
+ * Generate timestamped filename
+ * @param {string} originalPath - Original file path
+ * @returns {string} Path with timestamp appended
+ */
+function getTimestampedPath(originalPath) {
+  const dir = dirname(originalPath);
+  const ext = extname(originalPath);
+  const base = basename(originalPath, ext);
+  const date = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  return join(dir, `${base}_${date}${ext}`);
+}
 
 /**
  * Write transcription results to CSV file
@@ -13,7 +26,8 @@ import { formatTimestamp } from '../utils/helpers.js';
  * @returns {Promise<void>}
  */
 export async function writeTranscriptionToCSV(instagramUrl, transcription, csvPath = null) {
-  const outputPath = csvPath || config.output.csvPath;
+  const basePath = csvPath || config.output.csvPath;
+  const outputPath = getTimestampedPath(basePath);
 
   // Ensure output directory exists
   const outputDir = dirname(outputPath);
@@ -66,6 +80,7 @@ export async function writeTranscriptionToCSV(instagramUrl, transcription, csvPa
   try {
     await csvWriter.writeRecords(records);
     logger.info(`Successfully wrote ${records.length} segments to CSV`);
+    return outputPath;
   } catch (error) {
     logger.error(`Error writing to CSV: ${error.message}`);
     throw new Error(`Failed to write CSV: ${error.message}`);
@@ -119,7 +134,8 @@ export async function writeTranscriptionToJSON(instagramUrl, transcription, json
  * @returns {Promise<void>}
  */
 export async function writeNotionCSV(instagramUrl, transcription, aiResults = {}, metadata = {}, csvPath = null) {
-  const outputPath = csvPath || config.output.csvPath.replace('.csv', '-notion.csv');
+  const basePath = csvPath || config.output.csvPath.replace('.csv', '-notion.csv');
+  const outputPath = getTimestampedPath(basePath);
 
   // Ensure output directory exists
   const outputDir = dirname(outputPath);
@@ -177,9 +193,73 @@ export async function writeNotionCSV(instagramUrl, transcription, aiResults = {}
   try {
     await csvWriter.writeRecords([record]);
     logger.info(`Successfully wrote video to Notion CSV`);
+    return outputPath;
   } catch (error) {
     logger.error(`Error writing to Notion CSV: ${error.message}`);
     throw new Error(`Failed to write Notion CSV: ${error.message}`);
+  }
+}
+
+/**
+ * Write AI summary to markdown file
+ * @param {string} instagramUrl - Original Instagram URL
+ * @param {object} aiResults - AI processing results
+ * @param {object} metadata - Optional video metadata
+ * @returns {Promise<string>} Path to the created markdown file
+ */
+export async function writeAISummaryToMarkdown(instagramUrl, aiResults = {}, metadata = {}) {
+  const basePath = config.output.csvPath.replace('.csv', '-summary.md');
+  const outputPath = getTimestampedPath(basePath);
+
+  // Ensure output directory exists
+  const outputDir = dirname(outputPath);
+  if (!existsSync(outputDir)) {
+    mkdirSync(outputDir, { recursive: true });
+  }
+
+  logger.info(`Writing AI summary to markdown: ${outputPath}`);
+
+  // Build markdown content
+  let markdown = `# Instagram Video Summary\n\n`;
+  markdown += `**Video URL:** ${instagramUrl}\n\n`;
+  markdown += `**Date Processed:** ${new Date().toLocaleDateString('en-US')}\n\n`;
+
+  if (metadata.duration) {
+    markdown += `**Duration:** ${metadata.duration.toFixed(2)}s\n\n`;
+  }
+
+  markdown += `---\n\n`;
+
+  if (aiResults.summary) {
+    markdown += `## Summary\n\n${aiResults.summary}\n\n`;
+  }
+
+  if (aiResults.topics) {
+    markdown += `## Key Topics\n\n`;
+    const topics = Array.isArray(aiResults.topics)
+      ? aiResults.topics
+      : aiResults.topics.split(',').map(t => t.trim());
+    topics.forEach(topic => {
+      markdown += `- ${topic}\n`;
+    });
+    markdown += `\n`;
+  }
+
+  if (aiResults.hashtags) {
+    markdown += `## Hashtags\n\n`;
+    const hashtags = Array.isArray(aiResults.hashtags)
+      ? aiResults.hashtags
+      : aiResults.hashtags.split(',').map(h => h.trim());
+    markdown += hashtags.join(' ') + '\n\n';
+  }
+
+  try {
+    writeFileSync(outputPath, markdown);
+    logger.info(`Successfully wrote AI summary to markdown`);
+    return outputPath;
+  } catch (error) {
+    logger.error(`Error writing to markdown: ${error.message}`);
+    throw new Error(`Failed to write markdown: ${error.message}`);
   }
 }
 
@@ -187,4 +267,5 @@ export default {
   writeTranscriptionToCSV,
   writeTranscriptionToJSON,
   writeNotionCSV,
+  writeAISummaryToMarkdown,
 };

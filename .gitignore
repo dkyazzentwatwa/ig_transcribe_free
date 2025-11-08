@@ -1,2 +1,29 @@
-/output
+# Dependencies
 /node_modules
+
+# Environment variables
+.env
+
+# Output files
+/output
+/downloads
+/logs
+
+# User-specific files
+urls.txt
+test-urls.txt
+
+# macOS system files
+.DS_Store
+**/.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.log

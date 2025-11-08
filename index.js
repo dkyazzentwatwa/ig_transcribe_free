@@ -5,7 +5,7 @@ import { logger } from './src/utils/logger.js';
 import { downloadWithYtDlp, checkYtDlp } from './src/scraper/yt-dlp.js';
 import { extractAudio, checkFFmpeg, getAudioMetadata } from './src/audio/extractor.js';
 import { transcribe, checkAvailableMethods } from './src/transcribe/index.js';
-import { writeTranscriptionToCSV, writeTranscriptionToJSON, writeNotionCSV } from './src/output/csv-writer.js';
+import { writeTranscriptionToCSV, writeTranscriptionToJSON, writeNotionCSV, writeAISummaryToMarkdown } from './src/output/csv-writer.js';
 import {
   summarizeTranscription,
   extractKeyTopics,
@@ -103,19 +103,30 @@ async function processInstagramVideo(instagramUrl, options = {}) {
       } catch (error) {
         logger.warn(`AI processing failed: ${error.message}`);
       }
+
+      // Write AI summary to markdown if we have results
+      if (Object.keys(aiResults).length > 0) {
+        try {
+          const summaryPath = await writeAISummaryToMarkdown(instagramUrl, aiResults, metadata);
+          logger.info(`✓ AI summary written: ${summaryPath}`);
+        } catch (error) {
+          logger.warn(`Failed to write AI summary: ${error.message}`);
+        }
+      }
     }
 
     // Step 5: Write to CSV
     logger.info('\n[5/5] Writing results to CSV...');
 
+    let csvPath;
     if (options.notionFormat) {
       // Write Notion-friendly format (one row per video)
-      await writeNotionCSV(instagramUrl, transcription, aiResults, metadata);
-      logger.info(`✓ Notion CSV written: ${config.output.csvPath.replace('.csv', '-notion.csv')}`);
+      csvPath = await writeNotionCSV(instagramUrl, transcription, aiResults, metadata);
+      logger.info(`✓ Notion CSV written: ${csvPath}`);
     } else {
       // Write default format (one row per segment)
-      await writeTranscriptionToCSV(instagramUrl, transcription);
-      logger.info(`✓ CSV written: ${config.output.csvPath}`);
+      csvPath = await writeTranscriptionToCSV(instagramUrl, transcription);
+      logger.info(`✓ CSV written: ${csvPath}`);
     }
 
     // Optional: Write to JSON
@@ -137,7 +148,7 @@ async function processInstagramVideo(instagramUrl, options = {}) {
       videoPath,
       audioPath,
       transcription,
-      csvPath: config.output.csvPath,
+      csvPath,
     };
 
   } catch (error) {
@@ -207,14 +218,16 @@ Options:
   --summarize              Generate summary (requires --ai)
   --topics                 Extract key topics (requires --ai)
   --hashtags               Generate hashtags (requires --ai)
-  --model <model>          Ollama model for AI processing (default: llama3)
+  --full                   Enable everything (AI, summarize, topics, hashtags, notion)
+  --model <model>          Ollama model for AI processing (default: from .env)
   --check                  Check system requirements
   --help, -h               Show this help message
 
 Examples:
   node index.js "https://instagram.com/p/ABC123"
-  node index.js "https://instagram.com/reel/XYZ789" --ai --summarize --notion
-  node index.js "https://instagram.com/p/ABC123" --ai --summarize --topics --hashtags --model gemma3:4b --notion
+  node index.js "https://instagram.com/reel/XYZ789" --full
+  node index.js "https://instagram.com/reel/XYZ789" --full --model gemma3:4b
+  node index.js "https://instagram.com/p/ABC123" --ai --summarize --topics --hashtags --notion
 
 Environment Variables:
   See .env.example for configuration options
@@ -238,20 +251,22 @@ Environment Variables:
     process.exit(1);
   }
 
+  const fullMode = args.includes('--full');
+
   const options = {
     transcribeMethod: args.includes('--method')
       ? args[args.indexOf('--method') + 1]
       : 'auto',
     useChunking: args.includes('--chunking'),
-    notionFormat: args.includes('--notion'),
+    notionFormat: args.includes('--notion') || fullMode,
     outputJson: args.includes('--json'),
-    aiProcessing: args.includes('--ai'),
-    summarize: args.includes('--summarize'),
-    extractTopics: args.includes('--topics'),
-    generateHashtags: args.includes('--hashtags'),
+    aiProcessing: args.includes('--ai') || fullMode,
+    summarize: args.includes('--summarize') || fullMode,
+    extractTopics: args.includes('--topics') || fullMode,
+    generateHashtags: args.includes('--hashtags') || fullMode,
     aiModel: args.includes('--model')
       ? args[args.indexOf('--model') + 1]
-      : 'llama3',
+      : config.ollama.model,
   };
 
   // Run pipeline

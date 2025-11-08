@@ -9664,3 +9664,277 @@ Failed URLs:
 [5/5] Writing results to CSV...
 2025-11-08 08:11:05 [INFO]: Writing transcription to CSV: ./output/transcriptions.csv
 2025-11-08 08:11:05 [INFO]: Successfully wrote 30 segments to CSV
+2025-11-08 08:21:05 [INFO]: ============================================================
+2025-11-08 08:21:05 [INFO]: Instagram Video Transcription Pipeline
+2025-11-08 08:21:05 [INFO]: ============================================================
+2025-11-08 08:21:05 [INFO]: URL: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:21:05 [INFO]: 
+[1/5] Downloading Instagram video...
+2025-11-08 08:21:05 [INFO]: Downloading Instagram video with yt-dlp: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:21:05 [INFO]: Output: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:21:07 [INFO]: ✓ Video downloaded successfully with yt-dlp
+2025-11-08 08:21:07 [INFO]: ✓ Video downloaded: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:21:07 [INFO]: 
+[2/5] Extracting audio from video...
+2025-11-08 08:21:07 [INFO]: Extracting audio from: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:21:07 [INFO]: Output audio file: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:21:07 [INFO]: Format: wav, Sample rate: 16000Hz, Channels: 1
+2025-11-08 08:21:07 [INFO]: Audio extraction completed successfully
+2025-11-08 08:21:07 [INFO]: ✓ Audio extracted: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:21:07 [INFO]:   Duration: 102.89s
+2025-11-08 08:21:07 [INFO]:   Sample Rate: 16000Hz
+2025-11-08 08:21:07 [INFO]:   Channels: 1
+2025-11-08 08:21:07 [INFO]: 
+[3/5] Transcribing audio...
+2025-11-08 08:21:07 [INFO]: Transcription method: auto
+2025-11-08 08:21:07 [INFO]: Using Whisper CLI...
+2025-11-08 08:21:07 [INFO]: Transcribing with Whisper CLI: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:21:14 [INFO]: Transcription with timestamps completed
+2025-11-08 08:21:14 [INFO]: ✓ Transcription completed
+2025-11-08 08:21:14 [INFO]:   Text length: 1700 characters
+2025-11-08 08:21:14 [INFO]:   Segments: 30
+2025-11-08 08:21:14 [INFO]: 
+[5/5] Writing results to CSV...
+2025-11-08 08:21:14 [INFO]: Writing transcription to CSV: ./output/transcriptions.csv
+2025-11-08 08:21:14 [INFO]: Successfully wrote 30 segments to CSV
+2025-11-08 08:36:10 [INFO]: ============================================================
+2025-11-08 08:36:10 [INFO]: Instagram Video Transcription Pipeline
+2025-11-08 08:36:10 [INFO]: ============================================================
+2025-11-08 08:36:10 [INFO]: URL: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:36:10 [INFO]: 
+[1/5] Downloading Instagram video...
+2025-11-08 08:36:11 [INFO]: Downloading Instagram video with yt-dlp: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:36:11 [INFO]: Output: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:36:11 [INFO]: ✓ Video downloaded successfully with yt-dlp
+2025-11-08 08:36:11 [INFO]: ✓ Video downloaded: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:36:11 [INFO]: 
+[2/5] Extracting audio from video...
+2025-11-08 08:36:12 [INFO]: Extracting audio from: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:36:12 [INFO]: Output audio file: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:36:12 [INFO]: Format: wav, Sample rate: 16000Hz, Channels: 1
+2025-11-08 08:36:12 [INFO]: Audio extraction completed successfully
+2025-11-08 08:36:12 [INFO]: ✓ Audio extracted: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:36:12 [INFO]:   Duration: 102.89s
+2025-11-08 08:36:12 [INFO]:   Sample Rate: 16000Hz
+2025-11-08 08:36:12 [INFO]:   Channels: 1
+2025-11-08 08:36:12 [INFO]: 
+[3/5] Transcribing audio...
+2025-11-08 08:36:12 [INFO]: Transcription method: auto
+2025-11-08 08:36:12 [INFO]: Using Whisper CLI...
+2025-11-08 08:36:12 [INFO]: Transcribing with Whisper CLI: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:36:18 [INFO]: Transcription with timestamps completed
+2025-11-08 08:36:18 [INFO]: ✓ Transcription completed
+2025-11-08 08:36:18 [INFO]:   Text length: 1700 characters
+2025-11-08 08:36:18 [INFO]:   Segments: 30
+2025-11-08 08:36:18 [INFO]: 
+[5/5] Writing results to CSV...
+2025-11-08 08:36:18 [INFO]: Writing transcription to CSV: ./output/transcriptions.csv
+2025-11-08 08:36:18 [INFO]: Successfully wrote 30 segments to CSV
+2025-11-08 08:38:23 [INFO]: ============================================================
+2025-11-08 08:38:23 [INFO]: Instagram Video Transcription Pipeline
+2025-11-08 08:38:23 [INFO]: ============================================================
+2025-11-08 08:38:23 [INFO]: URL: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:38:23 [INFO]: 
+[1/5] Downloading Instagram video...
+2025-11-08 08:38:23 [INFO]: Downloading Instagram video with yt-dlp: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:38:23 [INFO]: Output: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:38:25 [INFO]: ✓ Video downloaded successfully with yt-dlp
+2025-11-08 08:38:25 [INFO]: ✓ Video downloaded: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:38:25 [INFO]: 
+[2/5] Extracting audio from video...
+2025-11-08 08:38:25 [INFO]: Extracting audio from: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:38:25 [INFO]: Output audio file: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:38:25 [INFO]: Format: wav, Sample rate: 16000Hz, Channels: 1
+2025-11-08 08:38:25 [INFO]: Audio extraction completed successfully
+2025-11-08 08:38:25 [INFO]: ✓ Audio extracted: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:38:25 [INFO]:   Duration: 102.89s
+2025-11-08 08:38:25 [INFO]:   Sample Rate: 16000Hz
+2025-11-08 08:38:25 [INFO]:   Channels: 1
+2025-11-08 08:38:25 [INFO]: 
+[3/5] Transcribing audio...
+2025-11-08 08:38:25 [INFO]: Transcription method: auto
+2025-11-08 08:38:25 [INFO]: Using Whisper CLI...
+2025-11-08 08:38:25 [INFO]: Transcribing with Whisper CLI: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:38:32 [INFO]: Transcription with timestamps completed
+2025-11-08 08:38:32 [INFO]: ✓ Transcription completed
+2025-11-08 08:38:32 [INFO]:   Text length: 1700 characters
+2025-11-08 08:38:32 [INFO]:   Segments: 30
+2025-11-08 08:38:32 [INFO]: 
+[5/5] Writing results to CSV...
+2025-11-08 08:38:32 [INFO]: Writing transcription to CSV: ./output/transcriptions.csv
+2025-11-08 08:38:32 [INFO]: Successfully wrote 30 segments to CSV
+2025-11-08 08:46:24 [INFO]: Checking system requirements...
+
+2025-11-08 08:46:24 [INFO]: yt-dlp: ✓ Installed
+2025-11-08 08:46:24 [INFO]: FFmpeg: ✓ Installed
+2025-11-08 08:46:24 [INFO]: Transcribing with Whisper CLI: /dev/null
+2025-11-08 08:46:26 [ERROR]: Whisper CLI transcription failed: Whisper did not produce JSON output at /tmp/null.json
+2025-11-08 08:46:26 [INFO]: Found Whisper model: dimavz/whisper-tiny:latest
+2025-11-08 08:46:26 [INFO]: Apple Speech: ✗ Not available
+2025-11-08 08:46:26 [INFO]: Ollama Whisper: ✓ Available
+2025-11-08 08:46:26 [INFO]: Found 3 Ollama models
+2025-11-08 08:46:55 [INFO]: ============================================================
+2025-11-08 08:46:55 [INFO]: Instagram Video Transcription Pipeline
+2025-11-08 08:46:55 [INFO]: ============================================================
+2025-11-08 08:46:55 [INFO]: URL: https://www.instagram.com/reel/ABC123
+2025-11-08 08:46:55 [INFO]: 
+[1/5] Downloading Instagram video...
+2025-11-08 08:46:56 [INFO]: Downloading Instagram video with yt-dlp: https://www.instagram.com/reel/ABC123
+2025-11-08 08:46:56 [INFO]: Output: downloads/videos/ABC123.mp4
+2025-11-08 08:46:56 [ERROR]: yt-dlp download failed: Command failed: yt-dlp "https://www.instagram.com/reel/ABC123" -o "downloads/videos/ABC123.mp4" --quiet --no-warnings --format best
+ERROR: [Instagram] ABC123: Instagram sent an empty media response. Check if this post is accessible in your browser without being logged-in. If it is not, then use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Otherwise, if the post is accessible in browser without being logged-in, please report this issue on  https://github.com/yt-dlp/yt-dlp/issues?q= , filling out the appropriate issue template. Confirm you are on the latest version using  yt-dlp -U
+
+2025-11-08 08:47:38 [INFO]: ============================================================
+2025-11-08 08:47:38 [INFO]: Instagram Video Transcription Pipeline
+2025-11-08 08:47:38 [INFO]: ============================================================
+2025-11-08 08:47:38 [INFO]: URL: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:47:38 [INFO]: 
+[1/5] Downloading Instagram video...
+2025-11-08 08:47:38 [INFO]: Downloading Instagram video with yt-dlp: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:47:38 [INFO]: Output: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:47:39 [INFO]: ✓ Video downloaded successfully with yt-dlp
+2025-11-08 08:47:39 [INFO]: ✓ Video downloaded: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:47:39 [INFO]: 
+[2/5] Extracting audio from video...
+2025-11-08 08:47:39 [INFO]: Extracting audio from: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:47:39 [INFO]: Output audio file: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:47:39 [INFO]: Format: wav, Sample rate: 16000Hz, Channels: 1
+2025-11-08 08:47:39 [INFO]: Audio extraction completed successfully
+2025-11-08 08:47:39 [INFO]: ✓ Audio extracted: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:47:39 [INFO]:   Duration: 102.89s
+2025-11-08 08:47:39 [INFO]:   Sample Rate: 16000Hz
+2025-11-08 08:47:39 [INFO]:   Channels: 1
+2025-11-08 08:47:39 [INFO]: 
+[3/5] Transcribing audio...
+2025-11-08 08:47:39 [INFO]: Transcription method: auto
+2025-11-08 08:47:39 [INFO]: Using Whisper CLI...
+2025-11-08 08:47:39 [INFO]: Transcribing with Whisper CLI: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:47:46 [INFO]: Transcription with timestamps completed
+2025-11-08 08:47:46 [INFO]: ✓ Transcription completed
+2025-11-08 08:47:46 [INFO]:   Text length: 1700 characters
+2025-11-08 08:47:46 [INFO]:   Segments: 30
+2025-11-08 08:47:46 [INFO]: 
+[4/5] AI Processing with Ollama...
+2025-11-08 08:47:46 [INFO]: Found 3 Ollama models
+2025-11-08 08:47:46 [INFO]:   Available models: deepseek-r1:14b, dimavz/whisper-tiny:latest, gemma3:4b
+2025-11-08 08:47:46 [INFO]:   Generating summary...
+2025-11-08 08:47:46 [INFO]: Generating with Ollama model: llama3
+2025-11-08 08:47:46 [ERROR]: Ollama generation failed: Request failed with status code 404
+2025-11-08 08:47:46 [WARN]: AI processing failed: Generation failed: Request failed with status code 404
+2025-11-08 08:47:46 [INFO]: 
+[5/5] Writing results to CSV...
+2025-11-08 08:47:46 [INFO]: Writing transcription to CSV: ./output/transcriptions.csv
+2025-11-08 08:47:46 [INFO]: Successfully wrote 30 segments to CSV
+2025-11-08 08:50:34 [INFO]: ============================================================
+2025-11-08 08:50:34 [INFO]: Instagram Video Transcription Pipeline
+2025-11-08 08:50:34 [INFO]: ============================================================
+2025-11-08 08:50:34 [INFO]: URL: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:50:34 [INFO]: 
+[1/5] Downloading Instagram video...
+2025-11-08 08:50:35 [INFO]: Downloading Instagram video with yt-dlp: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:50:35 [INFO]: Output: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:50:36 [INFO]: ✓ Video downloaded successfully with yt-dlp
+2025-11-08 08:50:36 [INFO]: ✓ Video downloaded: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:50:36 [INFO]: 
+[2/5] Extracting audio from video...
+2025-11-08 08:50:36 [INFO]: Extracting audio from: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:50:36 [INFO]: Output audio file: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:50:36 [INFO]: Format: wav, Sample rate: 16000Hz, Channels: 1
+2025-11-08 08:50:36 [INFO]: Audio extraction completed successfully
+2025-11-08 08:50:36 [INFO]: ✓ Audio extracted: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:50:36 [INFO]:   Duration: 102.89s
+2025-11-08 08:50:36 [INFO]:   Sample Rate: 16000Hz
+2025-11-08 08:50:36 [INFO]:   Channels: 1
+2025-11-08 08:50:36 [INFO]: 
+[3/5] Transcribing audio...
+2025-11-08 08:50:36 [INFO]: Transcription method: auto
+2025-11-08 08:50:36 [INFO]: Using Whisper CLI...
+2025-11-08 08:50:36 [INFO]: Transcribing with Whisper CLI: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:50:43 [INFO]: Transcription with timestamps completed
+2025-11-08 08:50:43 [INFO]: ✓ Transcription completed
+2025-11-08 08:50:43 [INFO]:   Text length: 1700 characters
+2025-11-08 08:50:43 [INFO]:   Segments: 30
+2025-11-08 08:50:43 [INFO]: 
+[4/5] AI Processing with Ollama...
+2025-11-08 08:50:43 [INFO]: Found 3 Ollama models
+2025-11-08 08:50:43 [INFO]:   Available models: deepseek-r1:14b, dimavz/whisper-tiny:latest, gemma3:4b
+2025-11-08 08:50:43 [INFO]:   Generating summary...
+2025-11-08 08:50:43 [INFO]: Generating with Ollama model: gemma3:4b
+2025-11-08 08:50:56 [INFO]: Generation completed
+2025-11-08 08:50:56 [INFO]: 
+--- SUMMARY ---
+Here’s a concise summary of the video transcription:
+
+If you’re starting to learn coding with AI, focus on these five key steps:
+
+1.  **Conversational Approach:** Don’t “prompt” – have structured conversations with the AI, treating it like a teammate.
+2.  **Dedicated Folders:** Organize your projects in separate folders, avoiding clutter in your main computer directory.
+3.  **Utilize Cloud Code:** Learn to effectively communicate with Cloud Code for task management and analysis.
+4.  **Master Terminal Commands:**  Learn basic terminal commands alongside Cloud Code for efficient file management.
+5.  **Use GitHub:** Store your projects on GitHub for easy collaboration and integration.
+
+The video emphasizes that AI accelerates learning, but doesn’t replace the need for genuine understanding.
+
+2025-11-08 08:50:56 [INFO]: 
+[5/5] Writing results to CSV...
+2025-11-08 08:50:56 [INFO]: Writing transcription to CSV: ./output/transcriptions.csv
+2025-11-08 08:50:56 [INFO]: Successfully wrote 30 segments to CSV
+2025-11-08 08:59:35 [INFO]: ============================================================
+2025-11-08 08:59:35 [INFO]: Instagram Video Transcription Pipeline
+2025-11-08 08:59:35 [INFO]: ============================================================
+2025-11-08 08:59:35 [INFO]: URL: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:59:35 [INFO]: 
+[1/5] Downloading Instagram video...
+2025-11-08 08:59:35 [INFO]: Downloading Instagram video with yt-dlp: https://www.instagram.com/p/DQtCkXNkTGH/
+2025-11-08 08:59:35 [INFO]: Output: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:59:36 [INFO]: ✓ Video downloaded successfully with yt-dlp
+2025-11-08 08:59:36 [INFO]: ✓ Video downloaded: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:59:36 [INFO]: 
+[2/5] Extracting audio from video...
+2025-11-08 08:59:36 [INFO]: Extracting audio from: downloads/videos/DQtCkXNkTGH.mp4
+2025-11-08 08:59:36 [INFO]: Output audio file: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:59:36 [INFO]: Format: wav, Sample rate: 16000Hz, Channels: 1
+2025-11-08 08:59:37 [INFO]: Audio extraction completed successfully
+2025-11-08 08:59:37 [INFO]: ✓ Audio extracted: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:59:37 [INFO]:   Duration: 102.89s
+2025-11-08 08:59:37 [INFO]:   Sample Rate: 16000Hz
+2025-11-08 08:59:37 [INFO]:   Channels: 1
+2025-11-08 08:59:37 [INFO]: 
+[3/5] Transcribing audio...
+2025-11-08 08:59:37 [INFO]: Transcription method: auto
+2025-11-08 08:59:37 [INFO]: Using Whisper CLI...
+2025-11-08 08:59:37 [INFO]: Transcribing with Whisper CLI: downloads/audio/DQtCkXNkTGH.wav
+2025-11-08 08:59:44 [INFO]: Transcription with timestamps completed
+2025-11-08 08:59:44 [INFO]: ✓ Transcription completed
+2025-11-08 08:59:44 [INFO]:   Text length: 1700 characters
+2025-11-08 08:59:44 [INFO]:   Segments: 30
+2025-11-08 08:59:44 [INFO]: 
+[4/5] AI Processing with Ollama...
+2025-11-08 08:59:44 [INFO]: Found 3 Ollama models
+2025-11-08 08:59:44 [INFO]:   Available models: deepseek-r1:14b, dimavz/whisper-tiny:latest, gemma3:4b
+2025-11-08 08:59:44 [INFO]:   Generating summary...
+2025-11-08 08:59:44 [INFO]: Generating with Ollama model: gemma3:4b
+2025-11-08 08:59:55 [INFO]: Generation completed
+2025-11-08 08:59:55 [INFO]: 
+--- SUMMARY ---
+Here’s a concise summary of the video’s key takeaways:
+
+If you’re starting to learn coding with AI, focus on these five steps:
+
+1.  **Conversational Approach:** Treat AI like a teammate, focusing on having clear, structured conversations rather than just prompting.
+2.  **Dedicated Folders:** Organize your projects in separate folders to avoid chaos.
+3.  **Terminal Skills:** Learn basic terminal commands alongside AI interaction.
+4.  **GitHub Account:** Use GitHub for file storage and connectivity.
+5.  **AI as a Tool:** Remember that AI accelerates learning, but doesn’t replace the need to learn and understand the fundamentals.
+
+---
+
+Would you like me to elaborate on any of these points, or perhaps create a different type of summary (e.g., bullet points only)?
+
+2025-11-08 08:59:55 [INFO]: Writing AI summary to markdown: output/transcriptions-summary_2025-11-08.md
+2025-11-08 08:59:55 [INFO]: Successfully wrote AI summary to markdown
+2025-11-08 08:59:55 [INFO]: ✓ AI summary written: output/transcriptions-summary_2025-11-08.md
+2025-11-08 08:59:55 [INFO]: 
+[5/5] Writing results to CSV...
+2025-11-08 08:59:55 [INFO]: Writing transcription to CSV: output/transcriptions_2025-11-08.csv
+2025-11-08 08:59:55 [INFO]: Successfully wrote 30 segments to CSV

@@ -1,4 +1,6 @@
-# Instagram URLs to batch process
+# Test URLs for development
 # One URL per line, lines starting with # are ignored
 
-# Example URLs (uncomment to use):
+# Example test URLs (replace with your own):
+# https://www.instagram.com/p/ABC123/
+# https://www.instagram.com/reel/XYZ789/

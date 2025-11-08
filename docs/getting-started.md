@@ -34,14 +34,16 @@ Expected output:
 ✓ Video downloaded
 ✓ Audio extracted
 ✓ Transcription completed
-✓ CSV written: output/transcriptions.csv
+✓ CSV written: output/transcriptions_2025-11-08.csv
 ```
 
 ### 3. View Results
 
 ```bash
-cat output/transcriptions.csv
+cat output/transcriptions_2025-11-08.csv
 ```
+
+**Note**: Output files include the date to prevent overwrites.
 
 ## Next: Add AI Features
 
@@ -58,28 +60,20 @@ ollama serve
 ollama pull gemma3:4b
 ```
 
-### Run with AI
+### Run with Full AI Analysis
 
 ```bash
-node index.js "https://www.instagram.com/reel/XYZ789" \
-  --ai \
-  --summarize \
-  --topics \
-  --model gemma3:4b
+# One command does it all!
+node index.js "https://www.instagram.com/reel/XYZ789" --full
 ```
 
-## Next: Notion Export
+**Output files**:
+- `output/transcriptions-notion_2025-11-08.csv` - Notion-ready CSV
+- `output/transcriptions-summary_2025-11-08.md` - Markdown summary with AI analysis
 
-```bash
-node index.js "URL" \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --model gemma3:4b
-```
+## Import to Notion
 
-Import `output/transcriptions-notion.csv` into Notion!
+Import `output/transcriptions-notion_2025-11-08.csv` into Notion to build your searchable database!
 
 ## What's Next?
 

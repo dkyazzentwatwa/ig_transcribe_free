@@ -10,6 +10,9 @@
 - 🎤 **Transcribe with timestamps** using OpenAI Whisper
 - 🤖 **AI Analysis** with local Ollama models (summaries, topics, hashtags)
 - 📊 **Notion-ready CSV export** (one row per video with timestamps)
+- 📝 **Markdown summaries** with AI analysis exported separately
+- 📅 **Timestamped outputs** - files include dates to prevent overwrites
+- ⚡ **One-command mode** - use `--full` flag for everything
 - 🔄 **Batch processing** with configurable delays
 - 🌐 **Account scraping** to extract all videos from a profile
 
@@ -43,13 +46,11 @@ npm run setup
 # Transcribe a single video
 node index.js "https://www.instagram.com/p/ABC123"
 
-# With AI analysis and Notion export
-node index.js "https://www.instagram.com/reel/XYZ789" \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --model gemma3:4b
+# Full AI analysis (recommended - includes everything)
+node index.js "https://www.instagram.com/reel/XYZ789" --full
+
+# Or with custom model
+node index.js "https://www.instagram.com/reel/XYZ789" --full --model gemma3:4b
 ```
 
 ### Batch Processing Workflow
@@ -58,19 +59,15 @@ node index.js "https://www.instagram.com/reel/XYZ789" \
 # 1. Extract URLs from Instagram account (use browser console - see docs)
 # Add URLs to urls.txt (one per line)
 
-# 2. Batch process all videos
-node examples/batch-process.js urls.txt \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --model gemma3:4b \
-  --delay 12000
+# 2. Batch process all videos with full AI analysis
+node examples/batch-process.js urls.txt --full --delay 12000
 
-# 3. Import output/transcriptions-notion.csv into Notion
+# 3. Import output/transcriptions-notion_2025-11-08.csv into Notion
 ```
 
 ## 📊 Output Formats
+
+All output files include timestamps in the filename (e.g., `transcriptions_2025-11-08.csv`) to prevent overwrites.
 
 ### Notion CSV (Recommended)
 One row per video with all data in a single database entry:
@@ -80,11 +77,28 @@ One row per video with all data in a single database entry:
 
 **Timestamp format**: `00:00 - text | 00:05 - text | 00:10 - text`
 
+### AI Summary Markdown
+Separate markdown file with AI analysis (generated when using `--full` or AI flags):
+- Video URL and metadata
+- AI-generated summary
+- Key topics (bulleted list)
+- Generated hashtags
+
+**Example**: `transcriptions-summary_2025-11-08.md`
+
 ### Standard CSV
 One row per transcript segment (for video editing):
 
 | Instagram URL | Start Time | End Time | Text Segment |
 |---------------|------------|----------|--------------|
+
+## 📸 Screenshots
+
+### Terminal Output
+![Terminal Output](examples/output_terminal.png)
+
+### Example Output
+![Output Example](examples/output_example.png)
 
 ## 📚 Documentation
 
@@ -123,16 +137,29 @@ TRANSCRIBE_METHOD=auto  # auto, whisper-cli, ollama
 
 ## 📖 Examples
 
-### Single Video with Full Analysis
+### Single Video with Full Analysis (Recommended)
 
 ```bash
+# One command does it all!
+node index.js "https://www.instagram.com/reel/ABC123" --full
+
+# Or specify a custom model
+node index.js "https://www.instagram.com/reel/ABC123" --full --model deepseek-r1:14b
+```
+
+**Output files**:
+- `transcriptions-notion_2025-11-08.csv` - Notion-ready CSV
+- `transcriptions-summary_2025-11-08.md` - Markdown summary with AI analysis
+
+### Custom AI Options
+
+```bash
+# Just summary and topics (no hashtags)
 node index.js "https://www.instagram.com/reel/ABC123" \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --hashtags \
-  --model gemma3:4b
+  --ai --summarize --topics --notion
+
+# Just transcription (no AI)
+node index.js "https://www.instagram.com/reel/ABC123"
 ```
 
 ### Batch Processing 100 Videos
@@ -142,19 +169,14 @@ node index.js "https://www.instagram.com/reel/ABC123" \
 # Step 2: Save to urls.txt
 # Step 3: Process with 12-second delays
 
-node examples/batch-process.js urls.txt \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --delay 12000
+node examples/batch-process.js urls.txt --full --delay 12000
 ```
 
 ### For Video Editing (Precise Timestamps)
 
 ```bash
 node index.js "URL" --method whisper-cli
-# Output: transcriptions.csv with frame-accurate timestamps
+# Output: transcriptions_2025-11-08.csv with frame-accurate timestamps
 ```
 
 ## 🤝 Contributing

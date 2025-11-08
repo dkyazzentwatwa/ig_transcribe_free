@@ -26,14 +26,16 @@ https://www.instagram.com/reel/GHI789/
 ### 2. Run Batch Process
 
 ```bash
-node examples/batch-process.js urls.txt \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --model gemma3:4b \
-  --delay 12000
+# With full AI analysis (recommended)
+node examples/batch-process.js urls.txt --full --delay 12000
+
+# Or with custom model
+node examples/batch-process.js urls.txt --full --model deepseek-r1:14b --delay 12000
 ```
+
+**Output files**:
+- `output/transcriptions-notion_2025-11-08.csv` - All videos in one Notion-ready CSV
+- `output/transcriptions-summary_2025-11-08.md` - Individual markdown summaries for each video
 
 ## Extracting URLs from Instagram Accounts
 
@@ -119,12 +121,13 @@ node examples/batch-process.js <urls_file> [options]
 | Option | Description | Default |
 |--------|-------------|---------|
 | `--delay <ms>` | Delay between videos (milliseconds) | 5000-10000 (random) |
+| `--full` | Enable everything (AI, summary, topics, hashtags, notion) | false |
 | `--notion` | Export in Notion-friendly format | false |
 | `--ai` | Enable AI processing | false |
 | `--summarize` | Generate summaries | false |
 | `--topics` | Extract topics | false |
 | `--hashtags` | Generate hashtags | false |
-| `--model <name>` | Ollama model to use | llama3 |
+| `--model <name>` | Ollama model to use | from .env |
 | `--json` | Also output JSON files | false |
 
 ## Rate Limiting Strategy
@@ -200,22 +203,39 @@ Where:
 
 ## Output Management
 
+### Timestamped Files
+
+All output files include dates in filenames (e.g., `transcriptions-notion_2025-11-08.csv`) to prevent overwrites.
+
 ### Notion CSV Format
 
 All videos in one file:
 ```
-output/transcriptions-notion.csv
+output/transcriptions-notion_2025-11-08.csv
 ```
 
 **Structure:**
 - One row per video
 - Includes: URL, AI Summary, Full Transcript, Timestamps, Topics, Hashtags
 
+### AI Summary Markdown
+
+Individual summaries for each video:
+```
+output/transcriptions-summary_2025-11-08.md
+```
+
+**Structure:**
+- Video URL and metadata
+- AI-generated summary
+- Key topics (bulleted)
+- Hashtags
+
 ### Standard CSV Format
 
 All videos in one file:
 ```
-output/transcriptions.csv
+output/transcriptions_2025-11-08.csv
 ```
 
 **Structure:**
@@ -224,16 +244,16 @@ output/transcriptions.csv
 
 ### File Behavior
 
-**Append Mode** - New videos are appended to existing CSV files
+**Append Mode** - Videos processed on the same day append to existing CSV files
 
 ```bash
 # First run: Creates file with 50 videos
-node examples/batch-process.js batch1.txt --notion
+node examples/batch-process.js batch1.txt --full
 
-# Second run: Adds 50 more videos to same file
-node examples/batch-process.js batch2.txt --notion
+# Second run (same day): Adds 50 more videos to same file
+node examples/batch-process.js batch2.txt --full
 
-# Result: One file with 100 videos
+# Result: One file with 100 videos (transcriptions-notion_2025-11-08.csv)
 ```
 
 ## Error Handling
@@ -282,18 +302,12 @@ node examples/batch-process.js retry.txt --notion --delay 15000
 
 # 2. Save to competitor-urls.txt
 
-# 3. Batch process with AI analysis
-node examples/batch-process.js competitor-urls.txt \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --hashtags \
-  --model gemma3:4b \
-  --delay 15000
+# 3. Batch process with full AI analysis
+node examples/batch-process.js competitor-urls.txt --full --delay 15000
 
-# 4. Import to Notion
-# 5. Analyze topics, keywords, content patterns
+# 4. Import transcriptions-notion_2025-11-08.csv to Notion
+# 5. Review transcriptions-summary_2025-11-08.md for quick insights
+# 6. Analyze topics, keywords, content patterns
 ```
 
 ### Workflow 2: Content Archive
@@ -305,10 +319,9 @@ node examples/batch-process.js competitor-urls.txt \
 # 2. Save to my-content.txt
 
 # 3. Process with timestamps for editing
-node examples/batch-process.js my-content.txt \
-  --delay 5000
+node examples/batch-process.js my-content.txt --delay 5000
 
-# 4. Use transcriptions.csv for video editing
+# 4. Use transcriptions_2025-11-08.csv for video editing
 ```
 
 ### Workflow 3: Research Database
@@ -322,16 +335,10 @@ node examples/batch-process.js my-content.txt \
 # 2. Merge into master list
 cat *-urls.txt > all-research.txt
 
-# 3. Process all with AI
-node examples/batch-process.js all-research.txt \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --model llama3 \
-  --delay 20000
+# 3. Process all with full AI analysis
+node examples/batch-process.js all-research.txt --full --delay 20000
 
-# 4. Import to Notion research database
+# 4. Import transcriptions-notion_2025-11-08.csv to Notion research database
 ```
 
 ## Advanced Tips
@@ -347,7 +354,7 @@ split -l 100 urls.txt batch-
 # Process each batch separately
 for batch in batch-*; do
   echo "Processing $batch..."
-  node examples/batch-process.js "$batch" --notion --ai --summarize --delay 20000
+  node examples/batch-process.js "$batch" --full --delay 20000
   sleep 300  # 5 min pause between batches
 done
 ```

@@ -10,20 +10,18 @@ Complete guide to using ig-transcribe for video transcription and analysis.
 # Basic transcription
 node index.js "https://www.instagram.com/p/ABC123"
 
-# With AI analysis
-node index.js "https://www.instagram.com/reel/XYZ789" \
+# Full analysis (recommended - everything in one command!)
+node index.js "https://www.instagram.com/reel/XYZ789" --full
+
+# Full analysis with custom model
+node index.js "https://www.instagram.com/reel/XYZ789" --full --model deepseek-r1:14b
+
+# Custom AI options (pick and choose)
+node index.js "https://www.instagram.com/p/ABC123" \
   --ai \
   --summarize \
   --topics \
-  --hashtags \
-  --model gemma3:4b
-
-# Notion-friendly export
-node index.js "https://www.instagram.com/p/ABC123" \
-  --notion \
-  --ai \
-  --summarize \
-  --topics
+  --notion
 ```
 
 ## Command Line Options
@@ -41,11 +39,12 @@ node index.js "https://www.instagram.com/p/ABC123" \
 
 | Option | Description | Example |
 |--------|-------------|---------|
+| `--full` | Enable everything (AI, summary, topics, hashtags, notion) | `--full` |
 | `--ai` | Enable AI processing | `--ai` |
 | `--summarize` | Generate summary (requires --ai) | `--summarize` |
 | `--topics` | Extract key topics (requires --ai) | `--topics` |
 | `--hashtags` | Generate hashtags (requires --ai) | `--hashtags` |
-| `--model <model>` | Ollama model to use | `--model gemma3:4b` |
+| `--model <model>` | Ollama model to use (default: from .env) | `--model gemma3:4b` |
 
 ### Utility Options
 
@@ -55,6 +54,8 @@ node index.js "https://www.instagram.com/p/ABC123" \
 | `--help, -h` | Show help message |
 
 ## Output Formats
+
+All output files include timestamps in the filename (e.g., `transcriptions_2025-11-08.csv`) to prevent overwrites. Files with the same date will append to existing files.
 
 ### Standard CSV (Default)
 
@@ -85,6 +86,43 @@ https://instagram.com/p/ABC,Summary here,Full text,00:00 - text | 00:05 - text,9
 - Content analysis
 - Research archiving
 
+**Output file**: `transcriptions-notion_2025-11-08.csv`
+
+### AI Summary Markdown (`--full` or AI flags)
+
+Separate markdown file with AI analysis:
+
+```markdown
+# Instagram Video Summary
+
+**Video URL:** https://www.instagram.com/p/ABC123/
+**Date Processed:** 11/08/2025
+**Duration:** 96.50s
+
+---
+
+## Summary
+
+The speaker discusses how Claude AI organized their business...
+
+## Key Topics
+
+- AI workspace organization
+- Institutional memory systems
+- Claude AI capabilities
+
+## Hashtags
+
+#AI #ClaudeAI #Automation #Productivity
+```
+
+**Best for:**
+- Quick reference
+- Sharing analysis
+- Documentation
+
+**Output file**: `transcriptions-summary_2025-11-08.md`
+
 ### JSON Format (`--json`)
 
 ```json
@@ -112,13 +150,18 @@ https://instagram.com/p/ABC,Summary here,Full text,00:00 - text | 00:05 - text,9
 # Create urls.txt with one URL per line
 node examples/batch-process.js urls.txt
 
-# With all options
+# With full AI analysis (recommended)
+node examples/batch-process.js urls.txt --full --delay 12000
+
+# With custom model
+node examples/batch-process.js urls.txt --full --model deepseek-r1:14b --delay 12000
+
+# Custom options
 node examples/batch-process.js urls.txt \
   --notion \
   --ai \
   --summarize \
   --topics \
-  --hashtags \
   --model gemma3:4b \
   --delay 12000
 ```
@@ -256,17 +299,15 @@ Output:
 
 ```bash
 # 1. Transcribe with full analysis
-node index.js "https://www.instagram.com/p/ABC123" \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --hashtags \
-  --model gemma3:4b \
-  --json
+node index.js "https://www.instagram.com/p/ABC123" --full --json
 
-# 2. Import transcriptions-notion.csv into Notion
+# 2. Import transcriptions-notion_2025-11-08.csv into Notion
+# 3. Review transcriptions-summary_2025-11-08.md for quick insights
 ```
+
+**Output files**:
+- `transcriptions-notion_2025-11-08.csv` - Notion-ready CSV
+- `transcriptions-summary_2025-11-08.md` - Markdown summary
 
 ### Content Creator Workflow
 
@@ -275,7 +316,7 @@ node index.js "https://www.instagram.com/p/ABC123" \
 node index.js "https://www.instagram.com/reel/XYZ789" \
   --method whisper-cli
 
-# 2. Output: transcriptions.csv with frame-accurate timestamps
+# 2. Output: transcriptions_2025-11-08.csv with frame-accurate timestamps
 ```
 
 ### Batch Analysis Workflow
@@ -283,16 +324,10 @@ node index.js "https://www.instagram.com/reel/XYZ789" \
 ```bash
 # 1. Create urls.txt with competitor videos
 
-# 2. Batch process with delays
-node examples/batch-process.js urls.txt \
-  --notion \
-  --ai \
-  --summarize \
-  --topics \
-  --delay 15000 \
-  --model gemma3:4b
+# 2. Batch process with full AI analysis
+node examples/batch-process.js urls.txt --full --delay 15000
 
-# 3. Analyze trends in Notion
+# 3. Analyze trends in Notion using transcriptions-notion_2025-11-08.csv
 ```
 
 ## Tips & Best Practices
